@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="book"
+            type="com.example.databindingtest.beans.Book" />
+
+        <variable
+            name="myOnClickListener"
+            type="com.example.databindingtest.MainActivity.MyOnClickListener" />
+
+        <variable
+            name="imgUrl"
+            type="String" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{book.name}" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/yuan + book.price}" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{book.rating + @string/point}" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="传统方法响应点击事件"
+            android:onClick="toChange"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Databinding 方法响应点击事件"
+            android:onClick="@{() -> myOnClickListener.onClick()}"/>
+
+        <ImageView
+            app:imgUrl="@{imgUrl}"
+            android:layout_width="270dp"
+            android:layout_height="270dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="下一张图片"
+            android:onClick="nextImg"/>
+
+
+    </LinearLayout>
+</layout>
